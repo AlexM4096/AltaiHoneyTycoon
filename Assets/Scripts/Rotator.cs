@@ -1,28 +1,92 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class Rotator : MonoBehaviour
 {
-    private Camera _main;
-    private float _baseAngle = 0;
+    private enum RotationDirection : byte
+    {
+        Clockwise,
+        Counterclockwise,
+        Both
+    }
 
+    [SerializeField] private RotationDirection rotationDirection;
+
+    public float Angel { get; private set; }
+    public float DeltaAngel { get; private set; }
+    
+    private Camera _mainCamera;
+    private float _mouseAngel;
+    
+    
     private void Awake()
     {
-        _main = Camera.main;
+        _mainCamera = Camera.main;
     }
 
     private void OnMouseDown()
     {
-        Vector3 position = _main.WorldToScreenPoint(transform.position);
-        position = Input.mousePosition - position;
-        _baseAngle = Mathf.Atan2(position.y, position.x) * Mathf.Rad2Deg;
-        _baseAngle -= Mathf.Atan2(transform.right.y, transform.right.x) * Mathf.Rad2Deg;
+        _mouseAngel = MouseAngel();
     }
-
+    
     private void OnMouseDrag()
     {
-        Vector3 position = _main.WorldToScreenPoint(transform.position);
-        position = Input.mousePosition - position;
-        float angel = Mathf.Atan2(position.y, position.x) * Mathf.Rad2Deg - _baseAngle;
-        transform.rotation = Quaternion.AngleAxis(angel, Vector3.forward);
+        CalculateDeltaAngel();
+        CalculateAngle();
+        HandleRotation();
+    }
+
+    private void HandleRotation()
+    {
+        switch (rotationDirection)
+        {
+            case RotationDirection.Clockwise:
+                if (DeltaAngel < 0)
+                    Rotate();
+                break;
+                
+            case RotationDirection.Counterclockwise:
+                if (DeltaAngel > 0)
+                    Rotate();
+                break;
+            
+            case RotationDirection.Both:
+                Rotate();
+                break;
+        }
+    }
+    
+    private void Rotate()
+    {
+        transform.Rotate(Vector3.forward, DeltaAngel);
+    }
+
+    private void CalculateDeltaAngel()
+    {
+        float newMouseAngel = MouseAngel();
+        float deltaAngel = Mathf.DeltaAngle(_mouseAngel, newMouseAngel);
+        _mouseAngel = newMouseAngel;
+
+        DeltaAngel = deltaAngel;
+    }
+
+    private void CalculateAngle()
+    {
+        Angel += DeltaAngel;
+    }
+
+    private Vector3 MousePosition()
+    {
+        Vector3 screenMousePosition = Input.mousePosition;
+        Vector3 worldMousePosition = _mainCamera.ScreenToWorldPoint(screenMousePosition);
+        Vector3 localMousePosition = worldMousePosition - transform.position;
+        return localMousePosition;
+    }
+
+    private float MouseAngel()
+    {
+        Vector3 mousePosition = MousePosition();
+        float mouseAngel = Mathf.Atan2(mousePosition.y, mousePosition.x);
+        return mouseAngel * Mathf.Rad2Deg;
     }
 }
