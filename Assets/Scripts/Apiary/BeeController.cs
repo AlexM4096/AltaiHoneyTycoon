@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BeeController : MonoBehaviour
 {
-    private bool _isHaveHoney;
+    public bool IsHaveHoney;
     
     public Vector3 targetFlowers;
     public Vector3 spawnPoint;
     private float speed = 5f;
     void Update()
     {
-        Vector3 targetPosition = _isHaveHoney ? spawnPoint : targetFlowers; 
+        Vector3 targetPosition = IsHaveHoney ? spawnPoint : targetFlowers; 
 
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
@@ -23,7 +23,8 @@ public class BeeController : MonoBehaviour
     public IEnumerator TakingHoney()
     {
         yield return new WaitForSeconds(1);
-        _isHaveHoney = true;
-        gameObject.GetComponent<SpriteRenderer>().flipX = _isHaveHoney;
+        IsHaveHoney = true;
+        gameObject.GetComponent<SpriteRenderer>().flipX = IsHaveHoney;
     }
+    
 }
