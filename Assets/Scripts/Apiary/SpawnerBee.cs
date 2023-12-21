@@ -31,11 +31,8 @@ public class SpawnerBee : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         
         var position = _spawnPoints[Random.Range(0,_spawnPoints.Count)].transform.position;
-        
         GameObject bee = Instantiate(_beePrefab, position, Quaternion.identity);
-
         BeeController beeController = bee.GetComponent<BeeController>();
-        
         beeController.targetFlowers = _flowers[Random.Range(0,_flowers.Count)].transform.position;
         beeController.spawnPoint = position;
         
@@ -44,7 +41,6 @@ public class SpawnerBee : MonoBehaviour
         else
             StartCoroutine(SpawnBees());
     }
-
 
     public void OnTriggerEnter2D(Collider2D other)
     {
