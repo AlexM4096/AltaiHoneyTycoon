@@ -12,32 +12,40 @@ public class SpawnerBee : MonoBehaviour
     private List<GameObject> _flowers;
     [SerializeField]
     private List<GameObject> _spawnPoints;
+    [SerializeField]
+    private float _spawnTime = 0.2f;
 
-    private int _maxBeesWithHoney = 50;
+    private int _maxBeesWithHoney = 20;
     private int _currentBeesWithHoney = 0;
     private bool _isStartedMiniGame;
     private BeeController _beeController;
+    
+    public Action StopMiniGame;
+    public Action StartMiniGame;
+
+    public void Start() => _beePrefab = Resources.Load<GameObject>("Prefabs/Apiary/Bee");
 
     public void OnMouseDown()
     {
         if(_isStartedMiniGame)
             return;
         _isStartedMiniGame = true;
+        StartMiniGame.Invoke();
         StartCoroutine(SpawnBees());
     }
 
     public IEnumerator SpawnBees()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(_spawnTime);
         
         var position = _spawnPoints[Random.Range(0,_spawnPoints.Count)].transform.position;
         GameObject bee = Instantiate(_beePrefab, position, Quaternion.identity);
         BeeController beeController = bee.GetComponent<BeeController>();
         beeController.targetFlowers = _flowers[Random.Range(0,_flowers.Count)].transform.position;
         beeController.spawnPoint = position;
-        
+
         if (_currentBeesWithHoney >= _maxBeesWithHoney)
-            _currentBeesWithHoney = 0;
+            ResetMiniGame();
         else
             StartCoroutine(SpawnBees());
     }
@@ -51,4 +59,13 @@ public class SpawnerBee : MonoBehaviour
             Debug.Log(_currentBeesWithHoney);
         }
     }
+
+    public void ResetMiniGame()
+    {
+        _currentBeesWithHoney = 0;
+        _isStartedMiniGame = false;
+        StopMiniGame?.Invoke();
+    }
+    
+    
 }

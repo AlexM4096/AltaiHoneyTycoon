@@ -6,18 +6,28 @@ public class BeeController : MonoBehaviour
 {
     public bool IsHaveHoney;
     
+    [SerializeField] private float _speed = 5f;
     public Vector3 targetFlowers;
     public Vector3 spawnPoint;
-    private float _speed = 5f;
+    
+    
     void Update()
-    {
-        Vector3 targetPosition = IsHaveHoney ? spawnPoint : targetFlowers; 
-
+    { 
+        MoveToTarget();
+    }
+    
+    void MoveToTarget() {
+        Vector3 targetPosition = GetTargetPosition();
         float step = _speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
 
-        if (transform.position == targetPosition)
+        if (transform.position == targetPosition) {
             StartCoroutine(TakingHoney());
+        }
+    }
+
+    Vector3 GetTargetPosition() {
+        return IsHaveHoney ? spawnPoint : targetFlowers;
     }
     
     public IEnumerator TakingHoney()

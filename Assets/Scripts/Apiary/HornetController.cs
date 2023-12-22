@@ -6,16 +6,11 @@ using Random = UnityEngine.Random;
 
 public class HornetController : MonoBehaviour
 {
-    [SerializeField] 
-    private float _minX;
-    [SerializeField]
-    private float _maxX;
-    [SerializeField] 
-    private float _minY;
-    [SerializeField]
-    private float _maxY;
-    [SerializeField]
-    private float _speed = 5;
+    [SerializeField] private float _minX;
+    [SerializeField] private float _maxX; 
+    [SerializeField] private float _minY;
+    [SerializeField] private float _maxY;
+    [SerializeField] private float _speed = 4;
     
     private Vector2 _targetPosition;
     private Vector3 _previousPosition;
@@ -53,9 +48,7 @@ public class HornetController : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<BeeController>())
-        {
             other.GetComponent<BeeController>().DestroyBee();
-        }
     }
 
     private void CheckMovement()

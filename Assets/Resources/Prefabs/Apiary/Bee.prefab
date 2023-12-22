@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsHaveHoney: 0
+  _speed: 10
   targetFlowers: {x: 0, y: 0, z: 0}
   spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!50 &5627034245202521995
