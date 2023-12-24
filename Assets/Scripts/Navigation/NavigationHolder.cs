@@ -2,7 +2,7 @@
 
 namespace Navigation
 {
-    [CreateAssetMenu]
+    [System.Serializable][CreateAssetMenu]
     public class NavigationHolder : ScriptableObject
     {
         [field: SerializeField] public Vector3 Position { get; set; }
