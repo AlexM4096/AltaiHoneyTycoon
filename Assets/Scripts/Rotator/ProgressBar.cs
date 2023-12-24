@@ -7,8 +7,15 @@ public class ProgressBar : MonoBehaviour
 
     public void SetFillAmount(float amount)
     {
-        if (amount < 0 || amount > 1) return;
+        if (amount < 0) return;
 
+        if (amount > 1)
+        {
+            image.fillAmount = 1;
+            return;
+        }
+
+        
         image.fillAmount = amount;
     }
 }
