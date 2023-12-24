@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Navigation
@@ -12,9 +13,11 @@ namespace Navigation
         [SerializeField] private Button rightButton;
         [SerializeField] private Button downButton;
         [SerializeField] private Button leftButton;
-        
-        private void Awake()
+
+        private void OnValidate()
         {
+            if (navigationHolder == null || followPoint == null) return;
+            
             UpdatePosition();
         }
 

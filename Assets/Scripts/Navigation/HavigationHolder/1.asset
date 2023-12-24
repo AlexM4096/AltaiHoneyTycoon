@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1
   m_EditorClassIdentifier: 
   <Position>k__BackingField: {x: 0, y: 0, z: 0}
-  <Up>k__BackingField: {fileID: 0}
+  <Up>k__BackingField: {fileID: 11400000, guid: 56051c095cbd6494ba0146ea74749b4c, type: 2}
   <Right>k__BackingField: {fileID: 11400000, guid: 0f17d96a8abdbd747b139fdb1399ae5d, type: 2}
   <Down>k__BackingField: {fileID: 0}
   <Left>k__BackingField: {fileID: 0}

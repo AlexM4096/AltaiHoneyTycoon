@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55435abdb16348e0a3e1d9fbabaff07d, type: 3}
   m_Name: 4
   m_EditorClassIdentifier: 
-  <Position>k__BackingField: {x: 0, y: 0, z: 0}
+  <Position>k__BackingField: {x: 0.09, y: 19.92, z: 0}
   <Up>k__BackingField: {fileID: 0}
-  <Right>k__BackingField: {fileID: 0}
-  <Down>k__BackingField: {fileID: 0}
+  <Right>k__BackingField: {fileID: 11400000, guid: 9f15ee9b56f46bc418e9c23db4ff9b73, type: 2}
+  <Down>k__BackingField: {fileID: 11400000, guid: 82d6c516bcf15b0498c2d80d3f421fc0, type: 2}
   <Left>k__BackingField: {fileID: 0}
