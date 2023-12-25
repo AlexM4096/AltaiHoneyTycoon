@@ -6,20 +6,15 @@ using UnityEngine;
 public class ApiaryLVLManager : MonoBehaviour
 {
     private SpawnerBee _have;
-    
-    private void Awake()
-    {
-        _have = FindObjectOfType<SpawnerBee>();
-    }
+    private void Awake() =>_have = FindObjectOfType<SpawnerBee>();
     public void  StartMiniGame()
     {
         _have.GetComponent<SpawnerHornet>().StartSpawnHornet();
-        Debug.Log("Start");
     }
 
     public void EndMiniGame()
     {
-        Debug.Log("End");
+        _have.GetComponent<SpawnerHornet>().DestroyHornets();
     }
     private void OnEnable()
     {

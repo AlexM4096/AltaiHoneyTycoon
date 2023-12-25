@@ -9,8 +9,7 @@ public class BeeController : MonoBehaviour
     [SerializeField] private float _speed = 5f;
     public Vector3 targetFlowers;
     public Vector3 spawnPoint;
-    
-    
+
     void Update()
     { 
         MoveToTarget();

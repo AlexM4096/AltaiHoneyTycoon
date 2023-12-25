@@ -70,4 +70,11 @@ public class HornetController : MonoBehaviour
         transform.localScale = theScale;
     }
 
+    public void DestroyHornet()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        _targetPosition = _spawnPoint * 4;
+        Destroy(gameObject, 4f);
+    }
+
 }

@@ -21,7 +21,7 @@ public class DragAndDrop : MonoBehaviour
 
     private void Update()
     {
-        if (isDragging)
+        if (isDragging && GetComponent<Collider2D>().enabled)
         {
             Vector2 mousePos = GetMouseWorldPos();
             transform.position = new Vector3(mousePos.x + offset.x, mousePos.y + offset.y, transform.position.z);
