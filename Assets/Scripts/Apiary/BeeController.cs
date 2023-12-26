@@ -9,6 +9,7 @@ public class BeeController : MonoBehaviour
     [SerializeField] private float _speed = 5f;
     public Vector3 targetFlowers;
     public Vector3 spawnPoint;
+    private float _collectionTime = 1f;
 
     void Update()
     { 
@@ -21,17 +22,17 @@ public class BeeController : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
 
         if (transform.position == targetPosition) {
-            StartCoroutine(TakingHoney());
+            StartCoroutine(TakingHoney(_collectionTime));
         }
     }
 
     Vector3 GetTargetPosition() {
         return IsHaveHoney ? spawnPoint : targetFlowers;
     }
-    
-    public IEnumerator TakingHoney()
+
+    public IEnumerator TakingHoney(float time = 0f)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(time);
         IsHaveHoney = true;
         gameObject.GetComponent<SpriteRenderer>().flipX = IsHaveHoney;
     }
@@ -43,5 +44,6 @@ public class BeeController : MonoBehaviour
         Destroy(gameObject, 3f);
         _speed = 0;
     }
+    
     
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,12 +19,17 @@ public class SpawnerBee : MonoBehaviour
     private int _maxBeesWithHoney = 20;
     private int _currentBeesWithHoney = 0;
     private bool _isStartedMiniGame;
-    private BeeController _beeController;
-    
+    //private List<BeeController> _bees = new List<BeeController>();
+    private GameObject _beesBuffer;
+
     public Action StopMiniGame;
     public Action StartMiniGame;
 
-    public void Start() => _beePrefab = Resources.Load<GameObject>("Prefabs/Apiary/Bee");
+    public void Start()
+    {
+        _beesBuffer = new GameObject("BeesBuffer");
+        _beePrefab = Resources.Load<GameObject>("Prefabs/Apiary/Bee");
+    } 
 
     public void OnMouseDown()
     {
@@ -39,11 +45,11 @@ public class SpawnerBee : MonoBehaviour
         yield return new WaitForSeconds(_spawnTime);
         
         var position = _spawnPoints[Random.Range(0,_spawnPoints.Count)].transform.position;
-        GameObject bee = Instantiate(_beePrefab, position, Quaternion.identity);
+        GameObject bee = Instantiate(_beePrefab, position, Quaternion.identity,_beesBuffer.transform);
         BeeController beeController = bee.GetComponent<BeeController>();
         beeController.targetFlowers = _flowers[Random.Range(0,_flowers.Count)].transform.position;
         beeController.spawnPoint = position;
-
+        
         if (_currentBeesWithHoney >= _maxBeesWithHoney)
             ResetMiniGame();
         else
@@ -62,10 +68,12 @@ public class SpawnerBee : MonoBehaviour
 
     public void ResetMiniGame()
     {
+        _beesBuffer.GetComponentsInChildren<BeeController>().ToList().
+            ForEach(obj => obj.DestroyBee());
+            //ForEach(obj => StartCoroutine(obj.TakingHoney()));
+        
         _currentBeesWithHoney = 0;
         _isStartedMiniGame = false;
         StopMiniGame?.Invoke();
     }
-    
-    
 }

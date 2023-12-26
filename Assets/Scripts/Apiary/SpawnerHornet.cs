@@ -32,6 +32,7 @@ public class SpawnerHornet : MonoBehaviour
 
     public void DestroyHornets()
     {
+        _currentHornetCount = 0;
         _hornets.ForEach(obj => obj.DestroyHornet());
         _hornets.Clear();
     }
