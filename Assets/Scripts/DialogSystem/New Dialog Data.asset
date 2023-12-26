@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccba33faf7bc4795ae38375170bd2202, type: 3}
   m_Name: New Dialog Data
   m_EditorClassIdentifier: 
-  lines: []
+  lines:
+  - Hi
+  - My name is
+  - HI
+  - My name is
+  - Chika chika slim shady
