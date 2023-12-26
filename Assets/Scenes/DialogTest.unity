@@ -783,6 +783,7 @@ GameObject:
   - component: {fileID: 1593743439}
   - component: {fileID: 1593743438}
   - component: {fileID: 1593743437}
+  - component: {fileID: 1593743440}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -907,6 +908,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1593743440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593743435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e787a3fd1465a4f8448ac844d1b897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charactersPerSecond: 20
+  interpunctuationDelay: 0.5
+  quickSkip: 0
+  skipSpeedup: 5
+  sendDoneDelay: 0.25
 --- !u!1 &1651035071
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,7 +955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogData: {fileID: 11400000, guid: 2005121f22530f643af49109de6081b4, type: 2}
-  dialogPlayer: {fileID: 124825417}
+  dialogWindow: {fileID: 124825417}
 --- !u!4 &1651035073
 Transform:
   m_ObjectHideFlags: 0
