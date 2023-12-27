@@ -10,8 +10,8 @@ namespace DialogSystem
         [SerializeField] private TMP_Text tmpText;
         [SerializeField] private Button button;
 
-        public static event Action DialogStart;
-        public static event Action DialogEnd; 
+        public static event Action<DialogData> DialogStart;
+        public static event Action<DialogData> DialogEnd; 
         
         private bool _canPlayDialog = true;
         private int _index = 0;
@@ -33,11 +33,11 @@ namespace DialogSystem
         {
             if (!_canPlayDialog) return;
             
-            OnDialogStart();
-            
             _dialogData = dialogData;
             _canPlayDialog = false;
             gameObject.SetActive(true);
+            
+            OnDialogStart(_dialogData);
             
             _index = 0;
             PlayLine();
@@ -47,7 +47,7 @@ namespace DialogSystem
         {
             if (_index >= _dialogData.Lines.Count)
             {
-                OnDialogEnd();
+                OnDialogEnd(_dialogData);
                 
                 gameObject.SetActive(false);
                 _canPlayDialog = true;
@@ -58,14 +58,14 @@ namespace DialogSystem
             _index++;
         }
 
-        private static void OnDialogStart()
+        private static void OnDialogStart(DialogData dialogData)
         {
-            DialogStart?.Invoke();
+            DialogStart?.Invoke(dialogData);
         }
 
-        private static void OnDialogEnd()
+        private static void OnDialogEnd(DialogData dialogData)
         {
-            DialogEnd?.Invoke();
+            DialogEnd?.Invoke(dialogData);
         }
     }
 }
