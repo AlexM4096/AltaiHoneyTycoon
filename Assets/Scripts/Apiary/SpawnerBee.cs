@@ -16,7 +16,7 @@ public class SpawnerBee : MonoBehaviour
     [SerializeField]
     private float _spawnTime = 0.2f;
 
-    private int _maxBeesWithHoney = 20;
+    private int _maxBeesWithHoney = 50;
     private int _currentBeesWithHoney = 0;
     private bool _isStartedMiniGame;
     //private List<BeeController> _bees = new List<BeeController>();
@@ -60,7 +60,7 @@ public class SpawnerBee : MonoBehaviour
     {
         if (other.GetComponent<BeeController>() && other.GetComponent<BeeController>().IsHaveHoney)
         {
-            Destroy(other.gameObject, 1f);
+            Destroy(other.gameObject, 0.3f);
             _currentBeesWithHoney++;
             Debug.Log(_currentBeesWithHoney);
         }

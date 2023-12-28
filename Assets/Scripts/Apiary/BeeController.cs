@@ -34,7 +34,7 @@ public class BeeController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         IsHaveHoney = true;
-        gameObject.GetComponent<SpriteRenderer>().flipX = IsHaveHoney;
+        gameObject.GetComponent<SpriteRenderer>().flipX = !IsHaveHoney;
     }
 
     public void DestroyBee()
