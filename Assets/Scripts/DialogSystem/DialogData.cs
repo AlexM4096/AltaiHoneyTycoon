@@ -7,6 +7,6 @@ namespace DialogSystem
     public class DialogData : ScriptableObject
     {
         [SerializeField][TextArea] private List<string> lines;
-        public IEnumerable<string> Lines => lines;
+        public IReadOnlyList<string> Lines => lines;
     }
 }
