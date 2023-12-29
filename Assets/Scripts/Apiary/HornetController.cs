@@ -20,6 +20,7 @@ public class HornetController : MonoBehaviour
     {
         _spawnPoint = transform.position;
         _previousPosition = transform.position;
+        _targetPosition = GetRandomPosition();
     }
 
     private void Update()
@@ -31,10 +32,13 @@ public class HornetController : MonoBehaviour
     private void MoveTowardsRandomPosition()
     {
         if ((Vector2)transform.position != _targetPosition)
+        {
+            Debug.Log(_targetPosition); 
             transform.position = Vector2.MoveTowards(
                 transform.position,
                 _targetPosition, 
                 _speed * Time.deltaTime);
+        }
         else
             _targetPosition = GetRandomPosition();
     }
@@ -69,6 +73,8 @@ public class HornetController : MonoBehaviour
         theScale.x = scaleX;
         transform.localScale = theScale;
     }
+
+    public void SetRandomTarget() => _targetPosition = GetRandomPosition();
 
     public void DestroyHornet()
     {

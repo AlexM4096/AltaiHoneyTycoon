@@ -15,6 +15,7 @@ public class SpawnerHornet : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(SpawnHornet());
         _hornetPrefab = Resources.Load<GameObject>("Prefabs/Apiary/Hornet");
     }
     public void StartSpawnHornet() => StartCoroutine(SpawnHornet());
