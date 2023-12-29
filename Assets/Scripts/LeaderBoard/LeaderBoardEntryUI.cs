@@ -6,26 +6,18 @@ namespace LeaderBoard
 {
     public class LeaderBoardEntryUI : VisualElement
     {
-        private static readonly VisualTreeAsset Prefab;
-        
-        static LeaderBoardEntryUI()
-        {
-            Prefab = Resources.Load<VisualTreeAsset>("UI/LeaderBoardEntry");
-        }
-
         public readonly Label Rank;
         public readonly Label Username;
         public readonly Label Score;
 
         public LeaderBoardEntryUI()
         {
-            var a = Prefab.Instantiate().Q("VisualElement");
+            var a = Resources.Load<VisualTreeAsset>("UI/LeaderBoardEntry")
+                .Instantiate().Q("VisualElement");
 
             Rank = a.Q<Label>("Rank");
             Username = a.Q<Label>("Username");
             Score = a.Q<Label>("Score");
-
-            style.height = 200;
             
             Add(a);
         }
@@ -33,7 +25,21 @@ namespace LeaderBoard
         #region UXML
 
             [Preserve] public new class UxmlFactory : UxmlFactory<LeaderBoardEntryUI, UxmlTraits> {}
-            [Preserve] public new class UxmlTraits : VisualElement.UxmlTraits {}
+
+            [Preserve]
+            public new class UxmlTraits : VisualElement.UxmlTraits
+            {
+                // private readonly UxmlStringAttributeDescription _rank = new() { name = "rank-text" };
+                //
+                // public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
+                // {
+                //     base.Init(ve, bag, cc);
+                //
+                //     if (ve is not LeaderBoardEntryUI ate) return;
+                //
+                //     ate.Rank.text = _rank.GetValueFromBag(bag, cc);
+                // }
+            }
 
         #endregion
         
