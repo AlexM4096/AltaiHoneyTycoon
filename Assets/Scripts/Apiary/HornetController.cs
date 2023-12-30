@@ -33,7 +33,6 @@ public class HornetController : MonoBehaviour
     {
         if ((Vector2)transform.position != _targetPosition)
         {
-            Debug.Log(_targetPosition); 
             transform.position = Vector2.MoveTowards(
                 transform.position,
                 _targetPosition, 
@@ -52,7 +51,10 @@ public class HornetController : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<BeeController>())
+        {
             other.GetComponent<BeeController>().DestroyBee();
+            SpawnBeeMiniGame.CountLiveBees--;
+        }
     }
 
     private void CheckMovement()

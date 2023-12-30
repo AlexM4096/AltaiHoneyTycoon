@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,12 @@ public class BeeController : MonoBehaviour
     public Vector3 targetFlowers;
     public Vector3 spawnPoint;
     private float _collectionTime = 1f;
+    private Collider2D BeeCollider;
+
+    private void Start()
+    {
+        BeeCollider = GetComponent<Collider2D>();
+    }
 
     void Update()
     { 
@@ -39,6 +46,7 @@ public class BeeController : MonoBehaviour
 
     public void DestroyBee()
     {
+        BeeCollider.enabled = false;
         GetComponent<SpriteRenderer>().flipY = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         Destroy(gameObject, 3f);

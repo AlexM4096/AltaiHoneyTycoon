@@ -14,9 +14,13 @@ public class SpawnBeeMiniGame : MonoBehaviour
     [SerializeField] 
     private List<GameObject> _flowers;
     private int _currentBeesWithHoney = 0;
+    
     private int _beesInHive = 100;
+    public  static int CountLiveBees = 100;
+    public static int CountHoneyInHive = 0;
     public void Start()
     {
+        CountLiveBees = _beesInHive;
         _beesBuffer = new GameObject("BeesBuffer");
         _beePrefab = Resources.Load<GameObject>("Prefabs/Apiary/Bee");
         StartCoroutine(SpawnBees());
@@ -51,6 +55,7 @@ public class SpawnBeeMiniGame : MonoBehaviour
         yield return new WaitForSeconds(time);
         Destroy(other.gameObject);
         _beesInHive++;
+        CountHoneyInHive++;
     }
 
 }
