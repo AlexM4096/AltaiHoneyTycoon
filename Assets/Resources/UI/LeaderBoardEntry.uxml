@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UI/LeaderBoardEntryStyle.uxml.uss?fileID=7433441132597879392&amp;guid=d015f327054c65d4288b10fa4f8b0f4d&amp;type=3#LeaderBoardEntryStyle.uxml" />
+    <ui:VisualElement name="VisualElement" style="background-color: rgb(255, 255, 255); flex-direction: row; flex-grow: 1;">
+        <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="Rank" style="flex-grow: 1;" />
+        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Username" style="flex-grow: 3;" />
+        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Score" style="flex-grow: 3;" />
+    </ui:VisualElement>
+</ui:UXML>
