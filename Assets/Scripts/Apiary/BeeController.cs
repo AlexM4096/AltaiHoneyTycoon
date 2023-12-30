@@ -41,7 +41,10 @@ public class BeeController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         IsHaveHoney = true;
-        gameObject.GetComponent<SpriteRenderer>().flipX = !IsHaveHoney;
+        Vector3 theScale = transform.localScale;
+        theScale.x = -0.45f;
+        transform.localScale = theScale;
+        //gameObject.GetComponent<SpriteRenderer>().flipX = !IsHaveHoney;
     }
 
     public void DestroyBee()

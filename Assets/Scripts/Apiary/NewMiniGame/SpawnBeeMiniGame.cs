@@ -39,18 +39,18 @@ public class SpawnBeeMiniGame : MonoBehaviour
             _beesInHive--;
         }
         StartCoroutine(SpawnBees());
-        
     }
-    
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<BeeController>() && other.GetComponent<BeeController>().IsHaveHoney)
         {
-            StartCoroutine(TimerToDestroy(other, 0.3f));
+            other.GetComponent<BoxCollider2D>().enabled = false;
+            StartCoroutine(TimerToDestroy(other));
         }
     }
 
-    public IEnumerator TimerToDestroy(Collider2D other, float time)
+    public IEnumerator TimerToDestroy(Collider2D other, float time = 0)
     {
         yield return new WaitForSeconds(time);
         Destroy(other.gameObject);

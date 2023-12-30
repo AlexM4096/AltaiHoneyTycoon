@@ -7,7 +7,7 @@ public class SpawnerHornet : MonoBehaviour
 {
     [SerializeField] private int _maxHornetCount = 3;
     [SerializeField] private Vector3  _spaawnPoint = new Vector3(10, 9, 0);
-    [SerializeField] private float _spawnTime = 1f;
+    private float _spawnTime = 4f;
     
     private int _currentHornetCount = 0;
     private GameObject _hornetPrefab;

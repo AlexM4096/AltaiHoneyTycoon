@@ -16,7 +16,8 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnMouseUp()
     {
-        GetComponent<HornetController>().SetRandomTarget();
+        //GetComponent<HornetController>().SetRandomTarget();
+        GetComponent<HornetController>()._targetPosition = transform.position;
         isDragging = false;
     }
 
