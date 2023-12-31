@@ -50,7 +50,9 @@ public class BeeController : MonoBehaviour
     public void DestroyBee()
     {
         BeeCollider.enabled = false;
-        GetComponent<SpriteRenderer>().flipY = true;
+        Vector3 theScale = transform.localScale;
+        theScale.y = -0.45f;
+        transform.localScale = theScale;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         Destroy(gameObject, 3f);
         _speed = 0;
