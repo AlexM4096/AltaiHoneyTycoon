@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +20,8 @@ public class SpawnBeeMiniGame : MonoBehaviour
     public void Start()
     {
         CountLiveBees = _beesInHive;
+        CountHoneyInHive = 0;
+        
         _beesBuffer = new GameObject("BeesBuffer");
         _beePrefab = Resources.Load<GameObject>("Prefabs/Apiary/Bee");
         StartCoroutine(SpawnBees());
@@ -56,6 +57,7 @@ public class SpawnBeeMiniGame : MonoBehaviour
         Destroy(other.gameObject);
         _beesInHive++;
         CountHoneyInHive++;
+        PlayerPrefs.SetInt("score", CountHoneyInHive);
     }
 
 }

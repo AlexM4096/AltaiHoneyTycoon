@@ -22,6 +22,9 @@ namespace LeaderBoard
         private Label _label;
         private TextField _textField;
         private Button _saveButton;
+        private Button _closeButton;
+
+        private int _score;
 
         private Coroutine _coroutine;
 
@@ -30,26 +33,30 @@ namespace LeaderBoard
             _root = GetComponent<UIDocument>().rootVisualElement;
             
             _button = _root.Q<Button>("StartGame");
-            _button.clicked += () =>
-            {
-                
-            };
+            _button.clicked += SceneLoader.LoadGameplayScene;
 
-            int score = PlayerPrefs.GetInt("score", 0);
+            _score = PlayerPrefs.GetInt("score", 0);
             
             _popup = _root.Q("Popup");
             _popup.style.display = DisplayStyle.None;
             
             _label = _root.Q<Label>("Texty");
-            _label.text += $"{score}";
+            _label.text += $"{_score}";
             
             _textField = _root.Q<TextField>("Field");
-            
+            _textField.RegisterCallback<FocusEvent>(evt => _textField.value = "");
+
             _saveButton = _root.Q<Button>("Save");
             _saveButton.clicked += () =>
             {
                 _popup.style.display = DisplayStyle.None;
-                Leaderboards.LeaderBoard.UploadNewEntry(_textField.value, score);
+                Leaderboards.LeaderBoard.UploadNewEntry(_textField.value, _score);
+            };
+
+            _closeButton = _root.Q<Button>("Close");
+            _closeButton.clicked += () =>
+            {
+                _popup.style.display = DisplayStyle.None;
             };
 
             InitializeListView();
@@ -92,7 +99,9 @@ namespace LeaderBoard
                 _entries = entries;
                 _listView.itemsSource = _entries;
                 _listView.RefreshItems();
-                _popup.style.display = DisplayStyle.Flex;
+                
+                if (_score > 0)
+                    _popup.style.display = DisplayStyle.Flex;
             });
         }
 
