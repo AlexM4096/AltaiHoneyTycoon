@@ -28,15 +28,16 @@ namespace LeaderBoard
 
         private Coroutine _coroutine;
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private void Awake()
         {
+            _score = PlayerPrefs.GetInt("score", 0);
+
             _root = GetComponent<UIDocument>().rootVisualElement;
             
             _button = _root.Q<Button>("StartGame");
             _button.clicked += SceneLoader.LoadGameplayScene;
 
-            _score = PlayerPrefs.GetInt("score", 0);
-            
             _popup = _root.Q("Popup");
             _popup.style.display = DisplayStyle.None;
             
@@ -50,7 +51,8 @@ namespace LeaderBoard
             _saveButton.clicked += () =>
             {
                 _popup.style.display = DisplayStyle.None;
-                Leaderboards.LeaderBoard.UploadNewEntry(_textField.value, _score);
+                Leaderboards.LeaderBoard.UploadNewEntry(_textField.value, _score, _ => UpdateEntries());
+                
             };
 
             _closeButton = _root.Q<Button>("Close");
@@ -58,6 +60,9 @@ namespace LeaderBoard
             {
                 _popup.style.display = DisplayStyle.None;
             };
+            
+            if (_score > 0)
+                _popup.style.display = DisplayStyle.Flex;
 
             InitializeListView();
         }
@@ -99,9 +104,6 @@ namespace LeaderBoard
                 _entries = entries;
                 _listView.itemsSource = _entries;
                 _listView.RefreshItems();
-                
-                if (_score > 0)
-                    _popup.style.display = DisplayStyle.Flex;
             });
         }
 
