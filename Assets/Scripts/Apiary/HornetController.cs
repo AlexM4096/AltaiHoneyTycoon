@@ -12,14 +12,22 @@ public class HornetController : MonoBehaviour
     [SerializeField] private float _maxY;
     [SerializeField] private float _speed = 4;
     
-    private Vector2 _targetPosition;
+    public Vector2 _targetPosition;
     private Vector3 _previousPosition;
     private Vector3 _spawnPoint;
+    
+    private float _lerpTime = 0f;
+    private float _lerpDuration = 2f; // Время, за которое объект достигнет цели
+    public Vector2 _startPosition;
+    
 
     void Start()
     {
+        _startPosition = transform.position;
+        _targetPosition = GetRandomPosition();
         _spawnPoint = transform.position;
         _previousPosition = transform.position;
+        _targetPosition = GetRandomPosition();
     }
 
     private void Update()
@@ -31,12 +39,17 @@ public class HornetController : MonoBehaviour
     private void MoveTowardsRandomPosition()
     {
         if ((Vector2)transform.position != _targetPosition)
-            transform.position = Vector2.MoveTowards(
-                transform.position,
-                _targetPosition, 
-                _speed * Time.deltaTime);
+        {
+            _lerpTime += Time.deltaTime;
+            float t = _lerpTime / _lerpDuration;
+            transform.position = Vector2.Lerp(_startPosition, _targetPosition, t);
+        }
         else
+        {
+            _startPosition = transform.position;
             _targetPosition = GetRandomPosition();
+            _lerpTime = 0f;
+        }
     }
 
     private Vector2 GetRandomPosition()
@@ -48,7 +61,10 @@ public class HornetController : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<BeeController>())
+        {
             other.GetComponent<BeeController>().DestroyBee();
+            SpawnBeeMiniGame.CountLiveBees--;
+        }
     }
 
     private void CheckMovement()
@@ -69,6 +85,8 @@ public class HornetController : MonoBehaviour
         theScale.x = scaleX;
         transform.localScale = theScale;
     }
+
+    public void SetRandomTarget() => _targetPosition = GetRandomPosition();
 
     public void DestroyHornet()
     {

@@ -7,7 +7,7 @@ public class SpawnerHornet : MonoBehaviour
 {
     [SerializeField] private int _maxHornetCount = 3;
     [SerializeField] private Vector3  _spaawnPoint = new Vector3(10, 9, 0);
-    [SerializeField] private float _spawnTime = 1f;
+    private float _spawnTime = 4f;
     
     private int _currentHornetCount = 0;
     private GameObject _hornetPrefab;
@@ -15,6 +15,7 @@ public class SpawnerHornet : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(SpawnHornet());
         _hornetPrefab = Resources.Load<GameObject>("Prefabs/Apiary/Hornet");
     }
     public void StartSpawnHornet() => StartCoroutine(SpawnHornet());
