@@ -1,0 +1,40 @@
+.unity-text-element {
+    -unity-font: url('project://database/Assets/Fonts/Pacifico-Regular.ttf?fileID=12800000&guid=3197635aec64ac449afa04ec446fe846&type=3#Pacifico-Regular');
+    -unity-font-definition: url('project://database/Assets/Fonts/Pacifico-Regular%20SDF.asset?fileID=11400000&guid=2afa5ec0311c60a4c88df6c8028785c7&type=2#Pacifico-Regular SDF');
+    font-size: 250%;
+    -unity-text-align: middle-center;
+}
+
+.unity-scroller {
+    display: none;
+    visibility: hidden;
+    overflow: hidden;
+    width: 0;
+}
+
+#StartGame:hover {
+    scale: 1.05 1;
+    transition-duration: 0.2s;
+}
+
+#StartGame {
+    transition-duration: 0.2s;
+}
+
+#unity-text-input {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+#Save {
+    transition-duration: 0.2s;
+}
+
+#Save:hover {
+    transition-duration: 0.2s;
+    scale: 1.05 1.05;
+}

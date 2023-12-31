@@ -17,59 +17,82 @@ namespace LeaderBoard
         private ListView _listView;
         
         private Button _button;
-        private TextField _username;
-        private IntegerField _score;
+        
+        private VisualElement _popup;
+        private Label _label;
+        private TextField _textField;
+        private Button _saveButton;
 
         private Coroutine _coroutine;
 
         private void Awake()
         {
             _root = GetComponent<UIDocument>().rootVisualElement;
-            _button = _root.Q<Button>("Button");
-            _username = _root.Q<TextField>("Username");
-            _score = _root.Q<IntegerField>("Score");
-
+            
+            _button = _root.Q<Button>("StartGame");
             _button.clicked += () =>
             {
-                Leaderboards.LeaderBoard.UploadNewEntry(_username.value, _score.value);
-                UpdateEnties();
+                
             };
-            
-            InitializeListView();
-        }
 
-        private void OnEnable()
-        {
-            //_coroutine = StartCoroutine(Coroutine());
+            int score = PlayerPrefs.GetInt("score", 0);
+            
+            _popup = _root.Q("Popup");
+            _popup.style.display = DisplayStyle.None;
+            
+            _label = _root.Q<Label>("Texty");
+            _label.text += $"{score}";
+            
+            _textField = _root.Q<TextField>("Field");
+            
+            _saveButton = _root.Q<Button>("Save");
+            _saveButton.clicked += () =>
+            {
+                _popup.style.display = DisplayStyle.None;
+                Leaderboards.LeaderBoard.UploadNewEntry(_textField.value, score);
+            };
+
+            InitializeListView();
         }
 
         private void Start()
         {
-            _coroutine = StartCoroutine(Coroutine());
+            UpdateEntries();
         }
 
-        private void OnDisable()
-        {
-            if (_coroutine is not null)
-                StopCoroutine(_coroutine);
-        }
+        // private void OnEnable()
+        // {
+        //     //_coroutine = StartCoroutine(Coroutine());
+        // }
+        //
+        // private void Start()
+        // {
+        //     _coroutine = StartCoroutine(Coroutine());
+        // }
+
+        // private void OnDisable()
+        // {
+        //     if (_coroutine is not null)
+        //         StopCoroutine(_coroutine);
+        // }
 
         IEnumerator Coroutine()
         {
             while (true)
             {
-                UpdateEnties();
+                UpdateEntries();
                 yield return new WaitForSeconds(15);
             }
         }
 
-        private void UpdateEnties()
+        private void UpdateEntries()
         {
             Leaderboards.LeaderBoard.GetEntries(entries =>
             {
                 _entries = entries;
                 _listView.itemsSource = _entries;
                 _listView.RefreshItems();
+                _popup.style.display = DisplayStyle.Flex;
             });
         }
 

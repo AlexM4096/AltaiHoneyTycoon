@@ -1,0 +1,5 @@
+.unity-text-element {
+    -unity-text-align: middle-center;
+    -unity-font-definition: url('project://database/Assets/Fonts/Pacifico-Regular%20SDF.asset?fileID=11400000&guid=2afa5ec0311c60a4c88df6c8028785c7&type=2#Pacifico-Regular SDF');
+    font-size: 250%;
+}
