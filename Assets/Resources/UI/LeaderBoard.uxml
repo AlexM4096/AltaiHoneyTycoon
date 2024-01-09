@@ -3,7 +3,7 @@
     <ui:VisualElement style="flex-grow: 1; flex-direction: row; background-image: url(&apos;project://database/Assets/Sprites/UI/%D1%84%D0%BE%D0%BD_%D1%80%D0%B5%D0%BA%D0%BE%D1%80%D0%B4%D0%BE%D0%B2.png?fileID=21300000&amp;guid=0185369a4564ecf49ad2f81aff2a45e0&amp;type=3#фон_рекордов&apos;); -unity-background-scale-mode: scale-and-crop;">
         <ui:VisualElement name="VisualElement" style="background-color: rgba(0, 0, 0, 0); width: 50%; height: 100%; -unity-slice-left: 74; -unity-slice-top: 74; -unity-slice-right: 74; -unity-slice-bottom: 74; justify-content: center; align-items: center;">
             <ui:Label tabindex="-1" text="Altai Honey: Tycoon" display-tooltip-when-elided="true" style="font-size: 70%;" />
-            <ui:Button text="Начать игру" display-tooltip-when-elided="true" name="StartGame" style="font-size: 70%; color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
+            <ui:Button text="Начать игру" display-tooltip-when-elided="true" name="StartGame" style="font-size: 70%; color: rgb(0, 0, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
         </ui:VisualElement>
         <ui:VisualElement name="VisualElement" style="width: 50%; height: 100%;">
             <ui:VisualElement name="VisualElement" style="background-color: rgba(0, 0, 0, 0); width: 100%; padding-left: 2%; padding-right: 2%; padding-top: 2%; padding-bottom: 2%; height: 15%;">

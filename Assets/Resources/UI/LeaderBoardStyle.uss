@@ -13,12 +13,18 @@
 }
 
 #StartGame:hover {
-    scale: 1.05 1;
+    scale: 1.05 1.05;
     transition-duration: 0.2s;
 }
 
 #StartGame {
     transition-duration: 0.2s;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Sprites/UI/%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%87%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%B8%D0%BC%D0%B5%D0%BD%D0%B822.png?fileID=-60122916&guid=8e6e7ff3b08b05b4da26a0898616acc8&type=3#табличка_для_имени22_0');
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 #unity-text-input {
